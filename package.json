@@ -1,0 +1,16 @@
+{
+  "name": "sushi-swap-ohm",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ limenal/sushi-swap-ohm",
+    "create-local": "graph create --node http://localhost:8020/ limenal/sushi-swap-ohm",
+    "remove-local": "graph remove --node http://localhost:8020/ limenal/sushi-swap-ohm",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 limenal/sushi-swap-ohm"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.22.1",
+    "@graphprotocol/graph-ts": "0.22.1"
+  }
+}
