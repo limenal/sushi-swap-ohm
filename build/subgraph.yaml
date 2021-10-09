@@ -1,6 +1,6 @@
 specVersion: 0.0.3
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum/contract
     name: Factory
@@ -17,22 +17,21 @@ dataSources:
         - PairCreated
       abis:
         - name: Factory
-          file: ./node_modules/@sushiswap/core/build/abi/UniswapV2Factory.json
+          file: Factory\node_modules\@sushiswap\core\build\abi\UniswapV2Factory.json
         - name: Pair
-          file: ./node_modules/@sushiswap/core/build/abi/UniswapV2Pair.json
+          file: Factory\node_modules\@sushiswap\core\build\abi\UniswapV2Pair.json
         - name: SushiToken
-          file: ./node_modules/@sushiswap/core/build/abi/SushiToken.json
+          file: Factory\node_modules\@sushiswap\core\build\abi\SushiToken.json
         - name: ERC20
-          file: ./node_modules/@sushiswap/core/build/abi/ERC20.json
+          file: Factory\node_modules\@sushiswap\core\build\abi\ERC20.json
         - name: ERC20SymbolBytes
-          file: ./abis/ERC20SymbolBytes.json
+          file: Factory\abis\ERC20SymbolBytes.json
         - name: ERC20NameBytes
-          file: ./abis/ERC20NameBytes.json
-
+          file: Factory\abis\ERC20NameBytes.json
       eventHandlers:
         - event: PairCreated(indexed address,indexed address,address,uint256)
           handler: onPairCreated
-      file: ./src/Factory.ts
+      file: Factory\Factory.wasm
 templates:
   - kind: ethereum/contract
     name: Pair
@@ -43,7 +42,7 @@ templates:
       kind: ethereum/events
       apiVersion: 0.0.5
       language: wasm/assemblyscript
-      file: ./src/Pair.ts
+      file: templates\Pair\Pair.wasm
       entities:
         - Bundle
         - Burn
@@ -58,9 +57,9 @@ templates:
         - User
       abis:
         - name: Pair
-          file: ./node_modules/@sushiswap/core/build/abi/UniswapV2Pair.json
+          file: Pair\node_modules\@sushiswap\core\build\abi\UniswapV2Pair.json
         - name: Factory
-          file: './node_modules/@sushiswap/core/build/abi/UniswapV2Factory.json'
+          file: Pair\node_modules\@sushiswap\core\build\abi\UniswapV2Factory.json
       eventHandlers:
         - event: Mint(indexed address,uint256,uint256)
           handler: onMint
