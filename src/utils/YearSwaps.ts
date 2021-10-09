@@ -112,7 +112,7 @@ export function SwapAdd(token:string, timeStamp:BigInt, amount0In: BigDecimal, a
         }
 
         day.token1Price = price1
-        if(price0 > day.token1PriceHigh)
+        if(price1 > day.token1PriceHigh)
         {
             day.token1PriceHigh = price1
         }
@@ -176,7 +176,7 @@ export function SwapAdd(token:string, timeStamp:BigInt, amount0In: BigDecimal, a
         }
 
         hour.token1Price = price1
-        if(price0 > hour.token1PriceHigh)
+        if(price1 > hour.token1PriceHigh)
         {
             hour.token1PriceHigh = price1
         }
@@ -232,7 +232,7 @@ export function SwapAdd(token:string, timeStamp:BigInt, amount0In: BigDecimal, a
         }
 
         minute.token1Price = price1
-        if(price0 > minute.token1PriceHigh)
+        if(price1 > minute.token1PriceHigh)
         {
             minute.token1PriceHigh = price1
         }
