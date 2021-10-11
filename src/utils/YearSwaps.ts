@@ -29,7 +29,11 @@ export function SwapAdd(token:string, timeStamp:BigInt, amount0In: BigDecimal, a
         year.token1PriceLow = price1
         year.token1PriceHigh = price1
 
-        year.volumeToken1 = amount1Out.plus(amount1In)
+        year.volumeToken0In = amount0In
+        year.volumeToken1In = amount1In
+        year.volumeToken0Out = amount0Out
+        year.volumeToken1Out = amount1Out
+        
         year.timestamp = timeStamp
         // year.sender.push(sender);
         year.save();
@@ -60,9 +64,10 @@ export function SwapAdd(token:string, timeStamp:BigInt, amount0In: BigDecimal, a
         }
 
 
-        year.volumeToken0 = year.volumeToken0.plus(amount0In).plus(amount0Out)
-        
-        year.volumeToken1 = year.volumeToken1.plus(amount1In).plus(amount1Out)
+        year.volumeToken0In = year.volumeToken0In.plus(amount0In)
+        year.volumeToken1In = year.volumeToken1In.plus(amount1In)
+        year.volumeToken0Out = year.volumeToken0Out.plus(amount0Out)
+        year.volumeToken1Out = year.volumeToken1Out.plus(amount1Out)
 
         // year.totalDeposit = counter.id
         year.save();
@@ -87,9 +92,10 @@ export function SwapAdd(token:string, timeStamp:BigInt, amount0In: BigDecimal, a
         day.token1PriceHigh = price1
         // day.stakeCount = counter.stakeCount
         // day.unstakeCount = counter.unstakeCount
-        day.volumeToken0 = amount0Out.plus(amount0In)
-        day.volumeToken1 = amount1Out.plus(amount1In)
-            
+        day.volumeToken0In = amount0In
+        day.volumeToken1In = amount1In
+        day.volumeToken0Out = amount0Out
+        day.volumeToken1Out = amount1Out
         // day.totalDeposit = counter.id
         day.save();
         days.push(day.id)
@@ -122,9 +128,10 @@ export function SwapAdd(token:string, timeStamp:BigInt, amount0In: BigDecimal, a
             day.token1PriceLow = price1
         }
         
-        day.volumeToken0 = day.volumeToken0.plus(amount0Out).plus(amount0In)
-        day.volumeToken1 = day.volumeToken1.plus(amount1Out).plus(amount1In)
-
+        day.volumeToken0In = day.volumeToken0In.plus(amount0In)
+        day.volumeToken1In = day.volumeToken1In.plus(amount1In)
+        day.volumeToken0Out = day.volumeToken0Out.plus(amount0Out)
+        day.volumeToken1Out = day.volumeToken1Out.plus(amount1Out)
         // day.totalDeposit = counter.id
         // year.sender.push(sender);
         day.save();
@@ -148,8 +155,10 @@ export function SwapAdd(token:string, timeStamp:BigInt, amount0In: BigDecimal, a
 
         // hour.stakeCount = counter.stakeCount
         // hour.unstakeCount = counter.unstakeCount
-        hour.volumeToken0 = amount0Out.plus(amount0In)
-        hour.volumeToken1 = amount1Out.plus(amount1In)
+        hour.volumeToken0In = amount0In
+        hour.volumeToken1In = amount1In
+        hour.volumeToken0Out = amount0Out
+        hour.volumeToken1Out = amount1Out
 
         // hour.totalDeposit = counter.id
         // year.sender.push(sender);
@@ -185,6 +194,10 @@ export function SwapAdd(token:string, timeStamp:BigInt, amount0In: BigDecimal, a
         {
             hour.token1PriceLow = price1
         }
+        hour.volumeToken0In = hour.volumeToken0In.plus(amount0In)
+        hour.volumeToken1In = hour.volumeToken1In.plus(amount1In)
+        hour.volumeToken0Out = hour.volumeToken0Out.plus(amount0Out)
+        hour.volumeToken1Out = hour.volumeToken1Out.plus(amount1Out)
 
         hour.timestamp=timeStamp;
         // hour.totalDeposit = counter.id
@@ -210,9 +223,10 @@ export function SwapAdd(token:string, timeStamp:BigInt, amount0In: BigDecimal, a
         minute.token1PriceHigh = price1
         // minute.stakeCount = counter.stakeCount
         // minute.unstakeCount = counter.unstakeCount
-        minute.volumeToken0 = amount0Out.plus(amount0In)
-        minute.volumeToken1 = amount1Out.plus(amount1In)
-
+        minute.volumeToken0In = amount0In
+        minute.volumeToken1In = amount1In
+        minute.volumeToken0Out = amount0Out
+        minute.volumeToken1Out = amount1Out
         // minute.totalDeposit = counter.id
         minute.save();
         minutes.push(minute.id);
@@ -241,9 +255,11 @@ export function SwapAdd(token:string, timeStamp:BigInt, amount0In: BigDecimal, a
         {
             minute.token1PriceLow = price1
         }
-        minute.volumeToken0 = minute.volumeToken0.plus(amount0Out).plus(amount0In)
-        minute.volumeToken1 = minute.volumeToken0.plus(amount1Out).plus(amount1In)
-        // minute.profit=minute!=null?minute.profit!=null?profit.plus(minute.profit):toDecimal(BigInt.zero(),0):toDecimal(BigInt.zero(),0);
+        minute.volumeToken0In = minute.volumeToken0In.plus(amount0In)
+        minute.volumeToken1In = minute.volumeToken1In.plus(amount1In)
+        minute.volumeToken0Out = minute.volumeToken0Out.plus(amount0Out)
+        minute.volumeToken1Out = minute.volumeToken1Out.plus(amount1Out)  
+        
         minute.timestamp=timeStamp;
         // minute.totalDeposit = counter.id
         minute.save();

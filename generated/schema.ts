@@ -2477,6 +2477,10 @@ export class CustomPair extends Entity {
     this.set("token1PriceLow", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("volumeToken0", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("volumeToken1", Value.fromBigDecimal(BigDecimal.zero()));
+    this.set("volumeToken0In", Value.fromBigDecimal(BigDecimal.zero()));
+    this.set("volumeToken1In", Value.fromBigDecimal(BigDecimal.zero()));
+    this.set("volumeToken0Out", Value.fromBigDecimal(BigDecimal.zero()));
+    this.set("volumeToken1Out", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("volumeUSD", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("untrackedVolumeUSD", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("txCount", Value.fromBigInt(BigInt.zero()));
@@ -2689,6 +2693,42 @@ export class CustomPair extends Entity {
     this.set("volumeToken1", Value.fromBigDecimal(value));
   }
 
+  get volumeToken0In(): BigDecimal {
+    let value = this.get("volumeToken0In");
+    return value!.toBigDecimal();
+  }
+
+  set volumeToken0In(value: BigDecimal) {
+    this.set("volumeToken0In", Value.fromBigDecimal(value));
+  }
+
+  get volumeToken1In(): BigDecimal {
+    let value = this.get("volumeToken1In");
+    return value!.toBigDecimal();
+  }
+
+  set volumeToken1In(value: BigDecimal) {
+    this.set("volumeToken1In", Value.fromBigDecimal(value));
+  }
+
+  get volumeToken0Out(): BigDecimal {
+    let value = this.get("volumeToken0Out");
+    return value!.toBigDecimal();
+  }
+
+  set volumeToken0Out(value: BigDecimal) {
+    this.set("volumeToken0Out", Value.fromBigDecimal(value));
+  }
+
+  get volumeToken1Out(): BigDecimal {
+    let value = this.get("volumeToken1Out");
+    return value!.toBigDecimal();
+  }
+
+  set volumeToken1Out(value: BigDecimal) {
+    this.set("volumeToken1Out", Value.fromBigDecimal(value));
+  }
+
   get volumeUSD(): BigDecimal {
     let value = this.get("volumeUSD");
     return value!.toBigDecimal();
@@ -2751,6 +2791,10 @@ export class PairMinute extends Entity {
     this.set("token1PriceLow", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("volumeToken0", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("volumeToken1", Value.fromBigDecimal(BigDecimal.zero()));
+    this.set("volumeToken0In", Value.fromBigDecimal(BigDecimal.zero()));
+    this.set("volumeToken1In", Value.fromBigDecimal(BigDecimal.zero()));
+    this.set("volumeToken0Out", Value.fromBigDecimal(BigDecimal.zero()));
+    this.set("volumeToken1Out", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("volumeUSD", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("untrackedVolumeUSD", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("txCount", Value.fromBigInt(BigInt.zero()));
@@ -2964,6 +3008,42 @@ export class PairMinute extends Entity {
     this.set("volumeToken1", Value.fromBigDecimal(value));
   }
 
+  get volumeToken0In(): BigDecimal {
+    let value = this.get("volumeToken0In");
+    return value!.toBigDecimal();
+  }
+
+  set volumeToken0In(value: BigDecimal) {
+    this.set("volumeToken0In", Value.fromBigDecimal(value));
+  }
+
+  get volumeToken1In(): BigDecimal {
+    let value = this.get("volumeToken1In");
+    return value!.toBigDecimal();
+  }
+
+  set volumeToken1In(value: BigDecimal) {
+    this.set("volumeToken1In", Value.fromBigDecimal(value));
+  }
+
+  get volumeToken0Out(): BigDecimal {
+    let value = this.get("volumeToken0Out");
+    return value!.toBigDecimal();
+  }
+
+  set volumeToken0Out(value: BigDecimal) {
+    this.set("volumeToken0Out", Value.fromBigDecimal(value));
+  }
+
+  get volumeToken1Out(): BigDecimal {
+    let value = this.get("volumeToken1Out");
+    return value!.toBigDecimal();
+  }
+
+  set volumeToken1Out(value: BigDecimal) {
+    this.set("volumeToken1Out", Value.fromBigDecimal(value));
+  }
+
   get volumeUSD(): BigDecimal {
     let value = this.get("volumeUSD");
     return value!.toBigDecimal();
@@ -3035,6 +3115,10 @@ export class PairHour extends Entity {
     this.set("token1PriceLow", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("volumeToken0", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("volumeToken1", Value.fromBigDecimal(BigDecimal.zero()));
+    this.set("volumeToken0In", Value.fromBigDecimal(BigDecimal.zero()));
+    this.set("volumeToken1In", Value.fromBigDecimal(BigDecimal.zero()));
+    this.set("volumeToken0Out", Value.fromBigDecimal(BigDecimal.zero()));
+    this.set("volumeToken1Out", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("volumeUSD", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("untrackedVolumeUSD", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("txCount", Value.fromBigInt(BigInt.zero()));
@@ -3248,6 +3332,42 @@ export class PairHour extends Entity {
     this.set("volumeToken1", Value.fromBigDecimal(value));
   }
 
+  get volumeToken0In(): BigDecimal {
+    let value = this.get("volumeToken0In");
+    return value!.toBigDecimal();
+  }
+
+  set volumeToken0In(value: BigDecimal) {
+    this.set("volumeToken0In", Value.fromBigDecimal(value));
+  }
+
+  get volumeToken1In(): BigDecimal {
+    let value = this.get("volumeToken1In");
+    return value!.toBigDecimal();
+  }
+
+  set volumeToken1In(value: BigDecimal) {
+    this.set("volumeToken1In", Value.fromBigDecimal(value));
+  }
+
+  get volumeToken0Out(): BigDecimal {
+    let value = this.get("volumeToken0Out");
+    return value!.toBigDecimal();
+  }
+
+  set volumeToken0Out(value: BigDecimal) {
+    this.set("volumeToken0Out", Value.fromBigDecimal(value));
+  }
+
+  get volumeToken1Out(): BigDecimal {
+    let value = this.get("volumeToken1Out");
+    return value!.toBigDecimal();
+  }
+
+  set volumeToken1Out(value: BigDecimal) {
+    this.set("volumeToken1Out", Value.fromBigDecimal(value));
+  }
+
   get volumeUSD(): BigDecimal {
     let value = this.get("volumeUSD");
     return value!.toBigDecimal();
@@ -3319,6 +3439,10 @@ export class PairDay extends Entity {
     this.set("token1PriceLow", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("volumeToken0", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("volumeToken1", Value.fromBigDecimal(BigDecimal.zero()));
+    this.set("volumeToken0In", Value.fromBigDecimal(BigDecimal.zero()));
+    this.set("volumeToken1In", Value.fromBigDecimal(BigDecimal.zero()));
+    this.set("volumeToken0Out", Value.fromBigDecimal(BigDecimal.zero()));
+    this.set("volumeToken1Out", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("volumeUSD", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("untrackedVolumeUSD", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("txCount", Value.fromBigInt(BigInt.zero()));
@@ -3532,6 +3656,42 @@ export class PairDay extends Entity {
     this.set("volumeToken1", Value.fromBigDecimal(value));
   }
 
+  get volumeToken0In(): BigDecimal {
+    let value = this.get("volumeToken0In");
+    return value!.toBigDecimal();
+  }
+
+  set volumeToken0In(value: BigDecimal) {
+    this.set("volumeToken0In", Value.fromBigDecimal(value));
+  }
+
+  get volumeToken1In(): BigDecimal {
+    let value = this.get("volumeToken1In");
+    return value!.toBigDecimal();
+  }
+
+  set volumeToken1In(value: BigDecimal) {
+    this.set("volumeToken1In", Value.fromBigDecimal(value));
+  }
+
+  get volumeToken0Out(): BigDecimal {
+    let value = this.get("volumeToken0Out");
+    return value!.toBigDecimal();
+  }
+
+  set volumeToken0Out(value: BigDecimal) {
+    this.set("volumeToken0Out", Value.fromBigDecimal(value));
+  }
+
+  get volumeToken1Out(): BigDecimal {
+    let value = this.get("volumeToken1Out");
+    return value!.toBigDecimal();
+  }
+
+  set volumeToken1Out(value: BigDecimal) {
+    this.set("volumeToken1Out", Value.fromBigDecimal(value));
+  }
+
   get volumeUSD(): BigDecimal {
     let value = this.get("volumeUSD");
     return value!.toBigDecimal();
@@ -3603,6 +3763,10 @@ export class PairYear extends Entity {
     this.set("token1PriceLow", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("volumeToken0", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("volumeToken1", Value.fromBigDecimal(BigDecimal.zero()));
+    this.set("volumeToken0In", Value.fromBigDecimal(BigDecimal.zero()));
+    this.set("volumeToken1In", Value.fromBigDecimal(BigDecimal.zero()));
+    this.set("volumeToken0Out", Value.fromBigDecimal(BigDecimal.zero()));
+    this.set("volumeToken1Out", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("volumeUSD", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("untrackedVolumeUSD", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("txCount", Value.fromBigInt(BigInt.zero()));
@@ -3814,6 +3978,42 @@ export class PairYear extends Entity {
 
   set volumeToken1(value: BigDecimal) {
     this.set("volumeToken1", Value.fromBigDecimal(value));
+  }
+
+  get volumeToken0In(): BigDecimal {
+    let value = this.get("volumeToken0In");
+    return value!.toBigDecimal();
+  }
+
+  set volumeToken0In(value: BigDecimal) {
+    this.set("volumeToken0In", Value.fromBigDecimal(value));
+  }
+
+  get volumeToken1In(): BigDecimal {
+    let value = this.get("volumeToken1In");
+    return value!.toBigDecimal();
+  }
+
+  set volumeToken1In(value: BigDecimal) {
+    this.set("volumeToken1In", Value.fromBigDecimal(value));
+  }
+
+  get volumeToken0Out(): BigDecimal {
+    let value = this.get("volumeToken0Out");
+    return value!.toBigDecimal();
+  }
+
+  set volumeToken0Out(value: BigDecimal) {
+    this.set("volumeToken0Out", Value.fromBigDecimal(value));
+  }
+
+  get volumeToken1Out(): BigDecimal {
+    let value = this.get("volumeToken1Out");
+    return value!.toBigDecimal();
+  }
+
+  set volumeToken1Out(value: BigDecimal) {
+    this.set("volumeToken1Out", Value.fromBigDecimal(value));
   }
 
   get volumeUSD(): BigDecimal {

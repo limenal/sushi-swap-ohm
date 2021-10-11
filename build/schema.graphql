@@ -511,6 +511,12 @@ type CustomPair @entity
 
   volumeToken0: BigDecimal!
   volumeToken1: BigDecimal!
+
+  volumeToken0In: BigDecimal!
+  volumeToken1In: BigDecimal!
+  volumeToken0Out: BigDecimal!
+  volumeToken1Out: BigDecimal!
+  
   volumeUSD: BigDecimal!
   untrackedVolumeUSD: BigDecimal!
   txCount: BigInt!
@@ -549,6 +555,12 @@ type PairMinute @entity
 
   volumeToken0: BigDecimal!
   volumeToken1: BigDecimal!
+
+  volumeToken0In: BigDecimal!
+  volumeToken1In: BigDecimal!
+  volumeToken0Out: BigDecimal!
+  volumeToken1Out: BigDecimal!
+
   volumeUSD: BigDecimal!
   untrackedVolumeUSD: BigDecimal!
   txCount: BigInt!
@@ -590,6 +602,12 @@ type PairHour @entity
 
   volumeToken0: BigDecimal!
   volumeToken1: BigDecimal!
+
+  volumeToken0In: BigDecimal!
+  volumeToken1In: BigDecimal!
+  volumeToken0Out: BigDecimal!
+  volumeToken1Out: BigDecimal!
+
   volumeUSD: BigDecimal!
   untrackedVolumeUSD: BigDecimal!
   txCount: BigInt!
@@ -631,6 +649,12 @@ type PairDay @entity
 
   volumeToken0: BigDecimal!
   volumeToken1: BigDecimal!
+
+  volumeToken0In: BigDecimal!
+  volumeToken1In: BigDecimal!
+  volumeToken0Out: BigDecimal!
+  volumeToken1Out: BigDecimal!
+
   volumeUSD: BigDecimal!
   untrackedVolumeUSD: BigDecimal!
   txCount: BigInt!
@@ -672,6 +696,12 @@ type PairYear @entity
 
   volumeToken0: BigDecimal!
   volumeToken1: BigDecimal!
+
+  volumeToken0In: BigDecimal!
+  volumeToken1In: BigDecimal!
+  volumeToken0Out: BigDecimal!
+  volumeToken1Out: BigDecimal!
+
   volumeUSD: BigDecimal!
   untrackedVolumeUSD: BigDecimal!
   txCount: BigInt!
