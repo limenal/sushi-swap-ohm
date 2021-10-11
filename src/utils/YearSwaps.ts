@@ -5,6 +5,20 @@ import {CustomPair, PairMinute, PairHour, PairDay, PairYear, Pair} from "../../g
 
 const SUFFIX = 'pair'
 
+
+/**
+
+     * @dev : Add swaps to graph
+     * @param token - OHM-DAI
+     * @param timeStamp - Timestamp of transaction block
+     * @param amount0In - Amount in OHM
+     * @param amount1In - Amount in DAI
+     * @param amount0Out - Amount out OHM
+     * @param amount1Out - Amount out DAI
+     * @param price0 - OHM in 1 DAI token
+     * @param price1 - DAI in 1 OHM token
+
+*/
 export function SwapAdd(token:string, timeStamp:BigInt, amount0In: BigDecimal, amount1In: BigDecimal, 
     amount0Out: BigDecimal, amount1Out: BigDecimal, price0: BigDecimal, price1: BigDecimal):void {
 
@@ -13,7 +27,6 @@ export function SwapAdd(token:string, timeStamp:BigInt, amount0In: BigDecimal, a
     const date: Date = new Date( number);
 
     let year = PairYear.load(token+date.getUTCFullYear().toString()+SUFFIX);
-    let lastYear =  PairYear.load(token+(date.getUTCFullYear()-1).toString()+SUFFIX);
     if(year==null){
         
         year= new PairYear(token+date.getUTCFullYear().toString()+SUFFIX);
@@ -35,7 +48,6 @@ export function SwapAdd(token:string, timeStamp:BigInt, amount0In: BigDecimal, a
         year.volumeToken1Out = amount1Out
         
         year.timestamp = timeStamp
-        // year.sender.push(sender);
         year.save();
         
     }else {
@@ -69,7 +81,6 @@ export function SwapAdd(token:string, timeStamp:BigInt, amount0In: BigDecimal, a
         year.volumeToken0Out = year.volumeToken0Out.plus(amount0Out)
         year.volumeToken1Out = year.volumeToken1Out.plus(amount1Out)
 
-        // year.totalDeposit = counter.id
         year.save();
     }
     
@@ -90,13 +101,10 @@ export function SwapAdd(token:string, timeStamp:BigInt, amount0In: BigDecimal, a
         day.token1Price = price1
         day.token1PriceLow = price1
         day.token1PriceHigh = price1
-        // day.stakeCount = counter.stakeCount
-        // day.unstakeCount = counter.unstakeCount
         day.volumeToken0In = amount0In
         day.volumeToken1In = amount1In
         day.volumeToken0Out = amount0Out
         day.volumeToken1Out = amount1Out
-        // day.totalDeposit = counter.id
         day.save();
         days.push(day.id)
         year.dayPair = days
@@ -104,8 +112,6 @@ export function SwapAdd(token:string, timeStamp:BigInt, amount0In: BigDecimal, a
     }else {
         day.timestamp=timeStamp;
         
-        // day.stakeCount = counter.stakeCount
-        // day.unstakeCount = counter.unstakeCount
         day.token0Price = price0
         if(price0 > day.token0PriceHigh)
         {
@@ -132,8 +138,6 @@ export function SwapAdd(token:string, timeStamp:BigInt, amount0In: BigDecimal, a
         day.volumeToken1In = day.volumeToken1In.plus(amount1In)
         day.volumeToken0Out = day.volumeToken0Out.plus(amount0Out)
         day.volumeToken1Out = day.volumeToken1Out.plus(amount1Out)
-        // day.totalDeposit = counter.id
-        // year.sender.push(sender);
         day.save();
     }
     
@@ -153,23 +157,17 @@ export function SwapAdd(token:string, timeStamp:BigInt, amount0In: BigDecimal, a
         hour.token1PriceLow = price1
         hour.token1PriceHigh = price1
 
-        // hour.stakeCount = counter.stakeCount
-        // hour.unstakeCount = counter.unstakeCount
         hour.volumeToken0In = amount0In
         hour.volumeToken1In = amount1In
         hour.volumeToken0Out = amount0Out
         hour.volumeToken1Out = amount1Out
 
-        // hour.totalDeposit = counter.id
-        // year.sender.push(sender);
         hour.save();
         hours.push(hour.id);
         day.hourPair=hours;
         day.save();
     }else {
         
-        // hour.stakeCount = counter.stakeCount
-        // hour.unstakeCount = counter.unstakeCount
         hour.volumeToken0 = hour.volumeToken0.plus(amount0Out).plus(amount0In)
         hour.volumeToken1 = hour.volumeToken0.plus(amount1Out).plus(amount1In)
 
@@ -200,8 +198,6 @@ export function SwapAdd(token:string, timeStamp:BigInt, amount0In: BigDecimal, a
         hour.volumeToken1Out = hour.volumeToken1Out.plus(amount1Out)
 
         hour.timestamp=timeStamp;
-        // hour.totalDeposit = counter.id
-        // year.sender.push(sender);
         hour.save();
     }
     
@@ -221,13 +217,10 @@ export function SwapAdd(token:string, timeStamp:BigInt, amount0In: BigDecimal, a
         minute.token1Price = price1
         minute.token1PriceLow = price1
         minute.token1PriceHigh = price1
-        // minute.stakeCount = counter.stakeCount
-        // minute.unstakeCount = counter.unstakeCount
         minute.volumeToken0In = amount0In
         minute.volumeToken1In = amount1In
         minute.volumeToken0Out = amount0Out
         minute.volumeToken1Out = amount1Out
-        // minute.totalDeposit = counter.id
         minute.save();
         minutes.push(minute.id);
         hour.minutePair=minutes;
@@ -261,37 +254,6 @@ export function SwapAdd(token:string, timeStamp:BigInt, amount0In: BigDecimal, a
         minute.volumeToken1Out = minute.volumeToken1Out.plus(amount1Out)  
         
         minute.timestamp=timeStamp;
-        // minute.totalDeposit = counter.id
         minute.save();
-    }
-
-    // let seconds = minute.secondPair;
-    // let second = CustomPair.load(token+date.getUTCFullYear().toString()+"-"+getNumberDayFromDate(date).toString()+"-"+date.getUTCHours().toString()+"-"+date.getUTCMinutes().toString()+"-"+date.getUTCSeconds().toString()+SUFFIX);//getUTCSeconds
-    // if(second==null) {
-        
-    //     // second.stakeCount = counter.stakeCount
-    //     // second.unstakeCount = counter.unstakeCount
-
-    //     second.volumeToken0 = amount0Out.plus(amount0In)
-    //     second.volumeToken1 = amount1Out.plus(amount1In)
-
-    //     second.timestamp=timeStamp;
-    //     // second.totalDeposit = counter.id
-    //     second.save();
-    //     seconds.push(second.id);
-    //     minute.secondPair=seconds;
-    //     minute.save();
-    // }
-    // else
-    // {
-        
-    //     // second.stakeCount = counter.stakeCount
-    //     // second.unstakeCount = counter.unstakeCount
-    //     second.volumeToken0 = second.volumeToken0.plus(amount0Out).plus(amount0In)
-    //     second.volumeToken1 = second.volumeToken1.plus(amount1Out).plus(amount1In)
-    //     second.timestamp=timeStamp;
-    //     // second.totalDeposit = counter.id
-    //     second.save();
-    // }
-    
+    }    
 }
