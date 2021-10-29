@@ -4,6 +4,9 @@ import { Burn, Mint, Pair, Swap, Token, Transaction } from '../generated/schema'
 import {
   Swap as SwapEvent,
   Sync as SyncEvent,
+  Transfer as TransferEvent,
+  Mint as MintEvent,
+  Burn as BurnEvent
 } from '../generated/templates/Pair/Pair'
 import {
   getBundle,
@@ -11,9 +14,9 @@ import {
   getPair,
   getToken,
 } from './entities/index'
-// import { findEthPerToken, getEthPrice } from '../pricing'
 
 import {SwapAdd} from "./utils/YearSwaps"
+import {getEthPrice, findEthPerToken} from "./utils/Pricing"
 
 
 const BLACKLIST_EXCHANGE_VOLUME: string[] = [
@@ -173,16 +176,45 @@ export function onSync(event: SyncEvent): void {
   }
 
   // update ETH price now that reserves could have changed
- 
-//   token0.derivedETH = findEthPerToken(token0 as Token)
-//   token1.derivedETH = findEthPerToken(token1 as Token)
+  const bundle = getBundle()
+  // Pass the block so we can get accurate price data before migration
+  if(bundle !== null)
+  {
+    bundle.ethPrice = getEthPrice(event.block)
+  }
+  bundle.save()  
+
   if(token0 !== null && token1 !== null)
   {
+    token0.derivedETH = findEthPerToken(token0 as Token)
+    token1.derivedETH = findEthPerToken(token1 as Token)
     token0.save()
     token1.save()
-  
-  }
 
+  }
+  // get tracked liquidity - will be 0 if neither is in whitelist
+  let trackedLiquidityETH: BigDecimal
+  if(bundle !== null && pair !== null)
+  {
+    if (bundle.ethPrice.notEqual(BIG_DECIMAL_ZERO)) {
+      trackedLiquidityETH = getTrackedLiquidityUSD(pair.reserve0, token0 as Token, pair.reserve1, token1 as Token).div(
+        bundle.ethPrice
+      )
+    } else {
+      trackedLiquidityETH = BIG_DECIMAL_ZERO
+    }
+  }
+  
+
+  // use derived amounts within pair
+  if(pair !== null && token1 !== null && token0 !== null && bundle !== null)
+  {
+    pair.trackedReserveETH = trackedLiquidityETH
+    pair.reserveETH = pair.reserve0
+      .times(token0.derivedETH as BigDecimal)
+      .plus(pair.reserve1.times(token1.derivedETH as BigDecimal))
+    pair.reserveUSD = pair.reserveETH.times(bundle.ethPrice)  
+  }
   // use derived amounts within pair
   // now correctly set liquidity amounts for each token
   if(token0 !== null && token1 !== null && pair !== null)
@@ -261,9 +293,25 @@ export function onSwap(event: SwapEvent): void {
   }
   if(token0 !== null && token1 !== null)
   {
-    
+    let swap = new Swap(transaction.id)
+    swap.token0 = token0.symbol
+    swap.token1 = token1.symbol
+    swap.amount0In = amount0In
+    swap.amount1In = amount1In
+    swap.price = token1Price
+    swap.timestamp = transaction.timestamp
+    swap.save()
     SwapAdd(token0.symbol + '-' + token1.symbol, transaction.timestamp, amount0In, amount1In, amount0Out, amount1Out, token0Price, token1Price)
 
   }
   
+}
+
+export function onTransfer(event: TransferEvent): void {
+}
+
+export function onBurn(event: BurnEvent): void {
+}
+
+export function onMint(event: MintEvent): void {
 }

@@ -1,30 +1,4 @@
-# # Search
-# type _Schema_
-#   # Token
-#   @fulltext(
-#     name: "tokenSearch"
-#     language: en
-#     algorithm: rank
-#     include: [{ entity: "Token", fields: [{ name: "id" }, { name: "name" }, { name: "symbol" }] }]
-#   )
-#   # Pair
-#   @fulltext(
-#     name: "pairSearch"
-#     language: en
-#     algorithm: rank
-#     include: [{ entity: "Pair", fields: [{ name: "id" }, { name: "name" }] }]
-#   )
-#   # User
-#   @fulltext(name: "userSearch", language: en, algorithm: rank, include: [{ entity: "User", fields: [{ name: "id" }] }])
 
-# User
-type User @entity {
-  # Address
-  id: ID!
-
-  # Liquidity Positions
-  liquidityPositions: [LiquidityPosition!]! @derivedFrom(field: "user")
-}
 
 # Bundle
 type Bundle @entity {
@@ -77,159 +51,6 @@ type Factory @entity {
   dayData: [DayData!]! @derivedFrom(field: "factory")
 }
 
-# Hour Data
-type HourData @entity {
-  # start of hour timestamp
-  id: ID!
-
-  # date
-  date: Int!
-
-  # factory
-  factory: Factory!
-
-  # volume
-  volumeETH: BigDecimal!
-  volumeUSD: BigDecimal!
-  untrackedVolume: BigDecimal!
-
-  # liquidity
-  liquidityETH: BigDecimal!
-  liquidityUSD: BigDecimal!
-
-  # tx count
-  txCount: BigInt!
-}
-
-# Day Data
-type DayData @entity {
-  # timestamp / 86400
-  id: ID!
-
-  # date
-  date: Int!
-
-  # factory
-  factory: Factory!
-
-  # volume
-  volumeETH: BigDecimal!
-  volumeUSD: BigDecimal!
-  untrackedVolume: BigDecimal!
-
-  # liquidity
-  liquidityETH: BigDecimal!
-  liquidityUSD: BigDecimal!
-
-  # tx count
-  txCount: BigInt!
-}
-
-# Token
-type Token @entity {
-  # token address
-  id: ID!
-
-  # factory
-  factory: Factory!
-
-  # mirrored from the smart contract
-  symbol: String!
-  name: String!
-  decimals: BigInt!
-
-  # used for other stats like marketcap
-  totalSupply: BigInt!
-
-  # token specific volume
-  volume: BigDecimal!
-  volumeUSD: BigDecimal!
-  untrackedVolumeUSD: BigDecimal!
-
-  # transactions across all pairs
-  txCount: BigInt!
-
-  # liquidity across all pairs
-  liquidity: BigDecimal!
-
-  derivedETH: BigDecimal!
-
-  whitelistPairs: [Pair!]!
-
-  # Token hour data
-  hourData: [TokenHourData!]! @derivedFrom(field: "token")
-
-  # Token day data
-  dayData: [TokenDayData!]! @derivedFrom(field: "token")
-
-  # Base pairs
-  basePairs: [Pair!]! @derivedFrom(field: "token0")
-
-  # Quote pairs
-  quotePairs: [Pair!]! @derivedFrom(field: "token1")
-
-  # Base pairs day data
-  basePairsDayData: [PairDayData!]! @derivedFrom(field: "token0")
-
-  # Quote pairs day data
-  quotePairsDayData: [PairDayData!]! @derivedFrom(field: "token1")
-}
-
-# Token hour data
-type TokenHourData @entity {
-  # token id - hour start timestamp
-  id: ID!
-
-  # date - hour start timestamp
-  date: Int!
-
-  # token
-  token: Token!
-
-  # volume
-  volume: BigDecimal!
-  volumeETH: BigDecimal!
-  volumeUSD: BigDecimal!
-
-  # tx count
-  txCount: BigInt!
-
-  # liquidity
-  liquidity: BigDecimal!
-  liquidityETH: BigDecimal!
-  liquidityUSD: BigDecimal!
-
-  # price usd
-  priceUSD: BigDecimal!
-}
-
-# Token day data
-type TokenDayData @entity {
-  # token id - day start timestamp
-  id: ID!
-
-  # date - day start timestamp
-  date: Int!
-
-  # token
-  token: Token!
-
-  # volume
-  volume: BigDecimal!
-  volumeETH: BigDecimal!
-  volumeUSD: BigDecimal!
-
-  # tx count
-  txCount: BigInt!
-
-  # liquidity
-  liquidity: BigDecimal!
-  liquidityETH: BigDecimal!
-  liquidityUSD: BigDecimal!
-
-  # price usd
-  priceUSD: BigDecimal!
-}
 
 # Pair
 type Pair @entity {
@@ -467,8 +288,11 @@ type Swap @entity {
   timestamp: BigInt! # need this to pull recent txns for specific token or pair
   pair: Pair!
 
+  token0: String!
+  token1: String!
   # populated from the Swap event
   sender: Bytes!
+  price: BigDecimal!
   amount0In: BigDecimal!
   amount1In: BigDecimal!
   amount0Out: BigDecimal!

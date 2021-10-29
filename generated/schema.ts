@@ -2309,7 +2309,10 @@ export class Swap extends Entity {
     this.set("transaction", Value.fromString(""));
     this.set("timestamp", Value.fromBigInt(BigInt.zero()));
     this.set("pair", Value.fromString(""));
+    this.set("token0", Value.fromString(""));
+    this.set("token1", Value.fromString(""));
     this.set("sender", Value.fromBytes(Bytes.empty()));
+    this.set("price", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("amount0In", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("amount1In", Value.fromBigDecimal(BigDecimal.zero()));
     this.set("amount0Out", Value.fromBigDecimal(BigDecimal.zero()));
@@ -2371,6 +2374,24 @@ export class Swap extends Entity {
     this.set("pair", Value.fromString(value));
   }
 
+  get token0(): string {
+    let value = this.get("token0");
+    return value!.toString();
+  }
+
+  set token0(value: string) {
+    this.set("token0", Value.fromString(value));
+  }
+
+  get token1(): string {
+    let value = this.get("token1");
+    return value!.toString();
+  }
+
+  set token1(value: string) {
+    this.set("token1", Value.fromString(value));
+  }
+
   get sender(): Bytes {
     let value = this.get("sender");
     return value!.toBytes();
@@ -2378,6 +2399,15 @@ export class Swap extends Entity {
 
   set sender(value: Bytes) {
     this.set("sender", Value.fromBytes(value));
+  }
+
+  get price(): BigDecimal {
+    let value = this.get("price");
+    return value!.toBigDecimal();
+  }
+
+  set price(value: BigDecimal) {
+    this.set("price", Value.fromBigDecimal(value));
   }
 
   get amount0In(): BigDecimal {

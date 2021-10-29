@@ -467,8 +467,11 @@ type Swap @entity {
   timestamp: BigInt! # need this to pull recent txns for specific token or pair
   pair: Pair!
 
+  token0: String!
+  token1: String!
   # populated from the Swap event
   sender: Bytes!
+  price: BigDecimal!
   amount0In: BigDecimal!
   amount1In: BigDecimal!
   amount0Out: BigDecimal!

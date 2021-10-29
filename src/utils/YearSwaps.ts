@@ -47,6 +47,7 @@ export function SwapAdd(token:string, timeStamp:BigInt, amount0In: BigDecimal, a
         year.volumeToken0Out = amount0Out
         year.volumeToken1Out = amount1Out
         
+        year.name = token
         year.timestamp = timeStamp
         year.save();
         
@@ -105,6 +106,7 @@ export function SwapAdd(token:string, timeStamp:BigInt, amount0In: BigDecimal, a
         day.volumeToken1In = amount1In
         day.volumeToken0Out = amount0Out
         day.volumeToken1Out = amount1Out
+        day.name = token
         day.save();
         days.push(day.id)
         year.dayPair = days
@@ -161,7 +163,7 @@ export function SwapAdd(token:string, timeStamp:BigInt, amount0In: BigDecimal, a
         hour.volumeToken1In = amount1In
         hour.volumeToken0Out = amount0Out
         hour.volumeToken1Out = amount1Out
-
+        hour.name = token
         hour.save();
         hours.push(hour.id);
         day.hourPair=hours;
@@ -221,6 +223,7 @@ export function SwapAdd(token:string, timeStamp:BigInt, amount0In: BigDecimal, a
         minute.volumeToken1In = amount1In
         minute.volumeToken0Out = amount0Out
         minute.volumeToken1Out = amount1Out
+        minute.name = token
         minute.save();
         minutes.push(minute.id);
         hour.minutePair=minutes;
