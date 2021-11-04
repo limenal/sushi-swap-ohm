@@ -11,6 +11,7 @@ export function getToken(address: Address): Token | null {
   let token = Token.load(address.toHex())
 
   if (token === null) {
+    
     const factory = getFactory()
     factory.tokenCount = factory.tokenCount.plus(BigInt.fromI32(1))
     factory.save()

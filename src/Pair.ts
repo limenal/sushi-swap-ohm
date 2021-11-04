@@ -293,16 +293,19 @@ export function onSwap(event: SwapEvent): void {
   }
   if(token0 !== null && token1 !== null)
   {
-    let swap = new Swap(transaction.id)
-    swap.token0 = token0.symbol
-    swap.token1 = token1.symbol
-    swap.amount0In = amount0In
-    swap.amount1In = amount1In
-    swap.price = token1Price
-    swap.timestamp = transaction.timestamp
-    swap.save()
-    SwapAdd(token0.symbol + '-' + token1.symbol, transaction.timestamp, amount0In, amount1In, amount0Out, amount1Out, token0Price, token1Price)
-
+    if(token0.symbol == 'OHM' || token1.symbol == 'OHM')
+    {
+      let swap = new Swap(transaction.id)
+      swap.token0 = token0.symbol
+      swap.token1 = token1.symbol
+      swap.amount0In = amount0In
+      swap.amount1In = amount1In
+      swap.price = token1Price
+      swap.timestamp = transaction.timestamp
+      swap.save()
+      SwapAdd(token0.symbol + '-' + token1.symbol, transaction.timestamp, amount0In, amount1In, amount0Out, amount1Out, token0Price, token1Price)
+  
+    }
   }
   
 }

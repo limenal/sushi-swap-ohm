@@ -34,8 +34,6 @@ export * from './pair'
 // Sync
 // export * from './sync'
 
-// Token Day Data
-export * from './token-day-data'
 
 // Token Hour Data
 // export * from './token-hour-data'
@@ -46,5 +44,3 @@ export * from './token'
 // Transaction
 // export * from './transaction'
 
-// User
-export * from './user'
